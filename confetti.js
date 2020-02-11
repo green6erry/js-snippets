@@ -40,7 +40,7 @@ let makeConfetti = () => {
   -webkit-animation-iteration-count: infinite;
   -o-animation-iteration-count: infinite;
 }`);
-    cssAnimation.appendChild(confettiSyle);
+    cssAnimation.appendChild(confettiStyle);
     
     document.head.appendChild(cssAnimation);
 }
