@@ -20,11 +20,28 @@ let makeConfetti = () => {
 
     var cssAnimation = document.createElement('style');
     cssAnimation.type = 'text/css';
-    var rules = document.createTextNode('@-webkit-keyframes confetti {' +
+    let rules = document.createTextNode('@-webkit-keyframes confetti {' +
         'from { top:0; }' +
         'to { top:' + height + 'px; }' +
         '}');
     cssAnimation.appendChild(rules);
+    
+    let confettiStyle = document.createTextNode(`.confetti {
+  width: 10px;
+  height: 10px;
+  margin-top: -10px;
+  top: 0;
+  border-radius: 30px;
+  position: absolute;
+  animation: confetti 10s;
+  -webkit-animation: confetti 10s;
+  animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+}`);
+    cssAnimation.appendChild(confettiSyle);
+    
     document.head.appendChild(cssAnimation);
 }
 
