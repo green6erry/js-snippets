@@ -40,4 +40,4 @@ function ready(fn) {
 }
 
 ready(makeConfetti);
-makeConfetti();
+// makeConfetti();
