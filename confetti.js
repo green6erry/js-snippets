@@ -58,3 +58,53 @@ function ready(fn) {
 
 ready(makeConfetti);
 // makeConfetti();
+let createHTML = (cb) => {
+  let confettiControls = document.createElement('div');
+  confettiControls.setAttribute('id', 'confetti-controls');
+  confettiControls.innerHTML = `<div class="col-md-4 right">
+  <div class="holder">
+    <div id="Activator" class="icon-three Center">
+      <i class="fa fa-list fa-2x"></i>
+    </div>
+    <div id="addDots" class="icon-three Center">
+      <i class="fa fa-plus fa-2x"></i>
+    </div>
+    <div id="minusDots" class="icon-three Center">
+      <i class="fa fa-minus fa-2x"></i>
+    </div>
+    <div id="stopDots" class="icon-three Center">
+      <i class="fa fa-stop fa-2x"></i>
+    </div>
+  </div>
+</div>`;
+  document.body.appendChild(confettiControls);
+  cb()
+  
+}
+
+let addStyleAnimation= () => {
+  var opaque = false;
+  var activated = false;
+  $('#confetti-controls #Activator').click(function() {
+    $(this).children().toggleClass('fa-list');
+    $(this).children().toggleClass('fa-close');
+    if (activated) {
+      $('#confetti-controls #addDots').removeClass('Left').addClass('Center');
+      $('#confetti-controls #minusDots').removeClass('Right').addClass('Center');
+      $('#confetti-controls #stopDots').removeClass('Top').addClass('Center');
+      $('#confetti-controls #Bottom').removeClass('Bottom').addClass('Center');
+    } else {
+      $('#confetti-controls #addDots').removeClass('Center').addClass('Left');
+      $('#confetti-controls #minusDots').removeClass('Center').addClass('Right');
+      $('#confetti-controls #stopDots').removeClass('Center').addClass('Top');
+      $('#confetti-controls #Bottom').removeClass('Center').addClass('Bottom');
+    }
+    activated = !activated;
+  }); 
+}
+
+let callAfter = (fx, cb) => {
+  fx(cb);
+}
+
+callAfter(createHTML, addStyleAnimation);
