@@ -1,6 +1,7 @@
 let particles = [];
 let particleIncrement = 20;
 let particleQty = localStorage.getItem('particleQty') != null ? localStorage.getItem('particleQty') : 100; 
+let htmlcreateruns = 3;
 
 let makeConfetti = () => {
     let {
@@ -67,6 +68,8 @@ function ready(fn) {
 
 ready(makeConfetti);
 // makeConfetti();
+
+
 let createHTML = () => {
     let confettiControls = document.createElement('div');
     confettiControls.setAttribute('id', 'confetti-controls');
@@ -94,9 +97,11 @@ let createHTML = () => {
 
     } catch (err) {
         console.log("couldn't append controls");
+        htmlcreateruns -= 1;
+        if (htmlcreateruns > 0){
+            setTimeout(createHTML, 1000);
+        }
     }
- 
-
 }
 
 
@@ -183,4 +188,5 @@ let callAfter = (fx, cb) => {
     fx(cb);
 }
 
+ready(createHTML);
 // ready(callAfter(createHTML, addStyleAnimation));
