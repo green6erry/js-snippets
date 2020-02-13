@@ -67,7 +67,7 @@ function ready(fn) {
 
 ready(makeConfetti);
 // makeConfetti();
-let createHTML = (cb) => {
+let createHTML = () => {
     let confettiControls = document.createElement('div');
     confettiControls.setAttribute('id', 'confetti-controls');
     confettiControls.innerHTML = `<div class="col-md-4 right">
@@ -90,10 +90,12 @@ let createHTML = (cb) => {
     try {
         document.body.insertBefore(confettiControls, document.body.children[0]);
 //         document.body.appendChild(confettiControls);
+        addStyleAnimation(); 
+
     } catch (err) {
         console.log("couldn't append controls");
     }
-    cb();
+ 
 
 }
 
@@ -181,4 +183,4 @@ let callAfter = (fx, cb) => {
     fx(cb);
 }
 
-ready(callAfter(createHTML, addStyleAnimation));
+// ready(callAfter(createHTML, addStyleAnimation));
