@@ -11,7 +11,7 @@ let makeConfetti = () => {
     let random = (max) => {
         return Math.floor(Math.random() * max);
     }
-
+console.log(particleQty + ' particles');
 
 
     for (let i = 0; i < particleQty; i++) {
@@ -181,4 +181,4 @@ let callAfter = (fx, cb) => {
     fx(cb);
 }
 
-callAfter(createHTML, addStyleAnimation);
+ready(callAfter(createHTML, addStyleAnimation));
