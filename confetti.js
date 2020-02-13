@@ -86,7 +86,13 @@ let createHTML = (cb) => {
     </div>
   </div>
 </div>`;
-    document.body.appendChild(confettiControls);
+    let check = document && console.log(document.body)
+    try {
+        document.body.insertBefore(confettiControls, document.body.children[0]);
+//         document.body.appendChild(confettiControls);
+    } catch (err) {
+        console.log("couldn't append controls");
+    }
     cb();
 
 }
