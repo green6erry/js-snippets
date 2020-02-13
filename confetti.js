@@ -69,8 +69,8 @@ function ready(fn) {
 ready(makeConfetti);
 // makeConfetti();
 
-let offsetTop = localStorage.getItem('controlTop') || (window.innerHeight / 2)
-let offsetLeft = localStorage.getItem('controlLeft') || 30;
+let offsetTop = localStorage.getItem('controlTop');
+let offsetLeft = localStorage.getItem('controlLeft');
 let styleStr = offsetTop && offsetLeft ? `style="top: ${offsetTop}px; left: ${offsetLeft}px"` : '';
 
 let createHTML = () => {
