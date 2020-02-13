@@ -73,8 +73,7 @@ ready(makeConfetti);
 let createHTML = () => {
     let confettiControls = document.createElement('div');
     confettiControls.setAttribute('id', 'confetti-controls');
-    confettiControls.innerHTML = `<div class="col-md-4 right">
-  <div class="holder">
+    confettiControls.innerHTML = `<div class="holder">
     <div id="Activator" class="icon-three Center">
       <i class="fa fa-list "></i>
     </div>
@@ -87,8 +86,7 @@ let createHTML = () => {
     <div id="stopDots" class="icon-three Center">
       <i class="fa fa-stop "></i>
     </div>
-  </div>
-</div>`;
+  </div>`;
     let check = document && console.log(document.body)
     try {
         document.body.insertBefore(confettiControls, document.body.children[0]);
