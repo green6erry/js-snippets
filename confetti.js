@@ -11,7 +11,7 @@ let makeConfetti = () => {
     let random = (max) => {
         return Math.floor(Math.random() * max);
     }
-
+console.log(particleQty + ' particles');
 
 
     for (let i = 0; i < particleQty; i++) {
@@ -86,7 +86,13 @@ let createHTML = (cb) => {
     </div>
   </div>
 </div>`;
-    document.body.appendChild(confettiControls);
+    let check = document && console.log(document.body)
+    try {
+        document.body.insertBefore(confettiControls, document.body.children[0]);
+//         document.body.appendChild(confettiControls);
+    } catch (err) {
+        console.log("couldn't append controls");
+    }
     cb();
 
 }
@@ -175,4 +181,4 @@ let callAfter = (fx, cb) => {
     fx(cb);
 }
 
-callAfter(createHTML, addStyleAnimation);
+ready(callAfter(createHTML, addStyleAnimation));
