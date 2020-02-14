@@ -291,24 +291,24 @@ function dragElement(elmnt) {
 let changeAllTheDarnLinks = () => {
     // Get the actual domain
     let domain = window.location.origin;
+    
+    let links = document.querySelectorAll('a');
+    let count = 0;
 
-    //see if it's localost
-    if (domain.indexOf('localhost') > 0){
-        let links = document.querySelectorAll('a');
+    // iterate over each link in the page
+    links.forEach( link => {
+        let href = link.getAttribute('href');
 
-        // iterate over each link in the page
-        links.forEach( link => {
-            let href = link.getAttribute('href');
+        // check if href exists for the link and if so, if it's hardcoded
+        if (href && href.indexOf('http') > 0){
+            const regex = /(http.*\/{2}([A-Z]|[a-z]|\.)*)/gmi;
+            const newHref = href.replace(regex, '');
+            link.setAttribute('href', newHref)
+            count++
+        }
+    });
 
-            // check if href exists for the link and if so, if it's NOT localhost
-            if (href && href.indexOf(domain) < 0){
-                const regex = /(http.*\/{2}([A-Z]|[a-z]|\.)*)/gmi;
-                const newHref = href.replace(regex, domain);
-                link.setAttribute('href', newHref)
-
-            }
-        });
-    }
+    console.warn(`confetti.js changed ${count} links`);
 }
 
 ready(changeAllTheDarnLinks);
