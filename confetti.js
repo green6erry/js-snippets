@@ -287,3 +287,28 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+
+let changeAllTheDarnLinks = () => {
+    // Get the actual domain
+    let domain = window.location.origin;
+
+    //see if it's localost
+    if (domain.indexOf('localhost') > 0){
+        let links = document.querySelectorAll('a');
+
+        // iterate over each link in the page
+        links.forEach( link => {
+            let href = link.getAttribute('href');
+
+            // check if href exists for the link and if so, if it's NOT localhost
+            if (href && href.indexOf(domain) < 0){
+                const regex = /(http.*\/{2}([A-Z]|[a-z]|\.)*)/gmi;
+                const newHref = href.replace(regex, domain);
+                link.setAttribute('href', newHref)
+
+            }
+        });
+    }
+}
+
+ready(changeAllTheDarnLinks);
