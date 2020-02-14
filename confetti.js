@@ -12,7 +12,7 @@ let makeConfetti = () => {
     let random = (max) => {
         return Math.floor(Math.random() * max);
     }
-console.log(particleQty + ' particles');
+// console.log(particleQty + ' particles');
 
 
     for (let i = 0; i < particleQty; i++) {
@@ -55,11 +55,11 @@ console.log(particleQty + ' particles');
     document.head.appendChild(cssAnimation);
 }
 
-console.log('started outside any fx');
+// console.log('started outside any fx');
 
 function ready(fn) {
     if (document.readyState != 'loading') {
-        console.log('started inside ready');
+//         console.log('started inside ready');
         fn();
     } else {
         document.addEventListener('DOMContentLoaded', fn);
@@ -91,7 +91,7 @@ let createHTML = () => {
       <i class="fa fa-stop "></i>
     </div>
   </div>`;
-    let check = document && console.log(document.body)
+//     let check = document && console.log(document.body);
     try {
         document.body.insertBefore(confettiControls, document.body.children[0]);
 //         document.body.appendChild(confettiControls);
@@ -160,7 +160,7 @@ function dragElement(elmnt) {
   }
 
   function closeDragElement() {
-    console.log(`ended at ${pos3}, ${pos4}`);
+//     console.log(`ended at ${pos3}, ${pos4}`);
     // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
@@ -287,3 +287,28 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+
+let changeAllTheDarnLinks = () => {
+    // Get the actual domain
+    let domain = window.location.origin;
+
+    //see if it's localost
+    if (domain.indexOf('localhost') > 0){
+        let links = document.querySelectorAll('a');
+
+        // iterate over each link in the page
+        links.forEach( link => {
+            let href = link.getAttribute('href');
+
+            // check if href exists for the link and if so, if it's NOT localhost
+            if (href && href.indexOf(domain) < 0){
+                const regex = /(http.*\/{2}([A-Z]|[a-z]|\.)*)/gmi;
+                const newHref = href.replace(regex, domain);
+                link.setAttribute('href', newHref)
+
+            }
+        });
+    }
+}
+
+ready(changeAllTheDarnLinks);
